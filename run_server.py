@@ -1,5 +1,5 @@
 from swadesh_list import app
-from database_initialization import db_session, init_db
+from database.database_initialization import db_session, init_db
 
 
 @app.teardown_appcontext
