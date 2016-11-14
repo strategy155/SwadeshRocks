@@ -1,9 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-import os
+from os.path import dirname, join, normpath
 
-engine_path = 'sqlite:///'+os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'static')
+
+current_dir = join(dirname(dirname(normpath(__file__))), 'static')
+engine_path = 'sqlite:///'+ current_dir
 engine = create_engine(engine_path, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,

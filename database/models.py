@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from wtforms import Form, StringField, PasswordField, validators
 
-from database_initialization import Base
+from database.database_initialization import Base
 
 
 class User(Base):

@@ -6,4 +6,4 @@ from flask import request, render_template
 def index():
     if request.method == 'POST':
         return 'LUL'
-    return render_template('index_layout.html')
+    return render_template('test.html')
