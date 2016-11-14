@@ -4,8 +4,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from os.path import dirname, join, normpath
 
 
-current_dir = join(dirname(dirname(normpath(__file__))), 'static')
-engine_path = 'sqlite:///'+ current_dir
+current_dir = join(dirname(normpath(__file__)), join('swadesh_list','static'))
+engine_path = 'sqlite:///'+ join(current_dir, 'users.db')
 engine = create_engine(engine_path, convert_unicode=True)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
