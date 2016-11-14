@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
+{% extends 'layout.html' %}
+    {% block head%}
         <meta charset="UTF-8">
         <title>Создание словаря</title>
-    </head>
-    <body>
-        <h1>Создание словаря с помощью списка Сводеша</h1>
-        <form action={{ url_for('login') }}>
-            Login<br>
-            <input type="text" name="login"><br>
-            Password<br>
-            <input type="text" name="password"><br>
-            <input type="submit" value="Submit"><br>
+    {% endblock %}
+    {% block right_column %}
+        {% from "_helpers.html" import render_field %}
+        <form method=post action={{ url_for('register') }}>
+          <dl>
+            {{ render_field(form.username) }}
+            {{ render_field(form.password) }}
+          </dl>
+          <p><input type=submit value=Login>
         </form>
-
-        <a class href={{ url_for('about') }}> about </a>
+    {% endblock %}
+    {% block content %}
+        <h1>Создание словаря с помощью списка Сводеша</h1>
+{#        <a href={{ url_for('about') }}> about </a>
         <a href={{ url_for('form') }}> form </a>
         <a href={{ url_for('shortform') }}> shortform </a>
         <a href={{ url_for('stats') }}> stats </a>
         <a href={{ url_for('json') }}> json </a>
-        <a href={{ url_for('search') }}> search </a>
-    </body>
-</html>
+        <a href={{ url_for('search') }}> search </a>#}
+    {% endblock %}

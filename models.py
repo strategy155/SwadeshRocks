@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String
 from wtforms import Form, StringField, PasswordField, validators
 
-from database.database_initialization import Base
+from database import Base
 
 
 class User(Base):
@@ -23,3 +23,8 @@ class RegistrationForm(Form):
     password = PasswordField('New Password', [validators.DataRequired(),
                                               validators.EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat Password')
+
+
+class LoginForm(Form):
+    username = StringField('Username', [validators.data_required])
+    password = PasswordField('Password', [validators.data_required])
