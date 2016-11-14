@@ -11,6 +11,7 @@ def register():
     if request.method == 'POST' and form.validate():
         user = User(form.username.data, form.password.data)
         db_session.add(user)
+        db_session.commit()
         flash('Access granted')
         return redirect(url_for('index'))
     return render_template('register.html',form=form)

@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Integer, String
 from wtforms import Form, StringField, PasswordField, validators
-
 from database import Base
 
 
@@ -26,5 +25,5 @@ class RegistrationForm(Form):
 
 
 class LoginForm(Form):
-    username = StringField('Username', [validators.data_required])
-    password = PasswordField('Password', [validators.data_required])
+    username = StringField('Username', [validators.DataRequired(), ])
+    password = PasswordField('Password', [validators.DataRequired()])

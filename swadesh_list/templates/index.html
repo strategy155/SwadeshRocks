@@ -4,17 +4,19 @@
         <title>Создание словаря</title>
     {% endblock %}
     {% block right_column %}
-        {% from "_helpers.html" import render_field %}
-        <form method=post action={{ url_for('register') }}>
-          <dl>
-            {{ render_field(form.username) }}
-            {{ render_field(form.password) }}
-          </dl>
-          <p><input type=submit value=Login>
-        </form>
+        {% if name == 'Guest' %}
+            {% from "_helpers.html" import render_field %}
+            <form method=post >
+              <dl>
+                {{ render_field(form.username) }}
+                {{ render_field(form.password) }}
+              </dl>
+              <p><input type=submit value=Login>
+            </form>
+        {% endif %}
     {% endblock %}
     {% block content %}
-        <h1>Создание словаря с помощью списка Сводеша</h1>
+        <h1>Welcome, {{ name }}</h1>
 {#        <a href={{ url_for('about') }}> about </a>
         <a href={{ url_for('form') }}> form </a>
         <a href={{ url_for('shortform') }}> shortform </a>
