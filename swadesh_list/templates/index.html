@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+    {% block head%}
+        <meta charset="UTF-8">
+        <title>Создание словаря</title>
+    {% endblock %}
+    {% block right_column %}
+        {% if name == 'Guest' %}
+            {% from "_helpers.html" import render_field %}
+            <form method=post >
+              <dl>
+                {{ render_field(form.username) }}
+                {{ render_field(form.password) }}
+              </dl>
+              <p><input type=submit value=Login>
+            </form>
+        {% endif %}
+    {% endblock %}
+    {% block content %}
+        <h1>Welcome, {{ name }}</h1>
+{#        <a href={{ url_for('about') }}> about </a>
+        <a href={{ url_for('form') }}> form </a>
+        <a href={{ url_for('shortform') }}> shortform </a>
+        <a href={{ url_for('stats') }}> stats </a>
+        <a href={{ url_for('json') }}> json </a>
+        <a href={{ url_for('search') }}> search </a>#}
+    {% endblock %}

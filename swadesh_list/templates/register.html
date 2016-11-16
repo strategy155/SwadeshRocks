@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+{% endblock%}
+{% block content %}
+{% from "_helpers.html" import render_field %}
+<form method=post action={{ url_for('register') }}>
+  <dl>
+    {{ render_field(form.username) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm) }}
+  </dl>
+  <p><input type=submit value=Register>
+</form>
+{% endblock %}
