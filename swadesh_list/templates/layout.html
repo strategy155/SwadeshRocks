@@ -11,9 +11,7 @@
     {% endblock %}
     <div id="content">{% block content %}{% endblock %}</div>
     <div id="footer">
-      {% block footer %}
-      <a href="{{ url_for('about') }}">about</a>.
-      {% endblock %}
+      {% block footer %}{% endblock %}
     </div>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
