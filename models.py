@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Enum
 from wtforms import Form, StringField, PasswordField, validators
 from database import Base
 
@@ -8,6 +8,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)
     password = Column(String(50))
+    swadesh = Enum()
 
     def __init__(self, name=None, password=None):
         self.name = name
@@ -15,6 +16,10 @@ class User(Base):
 
     def __repr__(self):
         return '<User {}>'.format(self.name)
+
+    def commit_swad(self, enum):
+        self.swadesh = enum
+    
 
 
 class RegistrationForm(Form):
