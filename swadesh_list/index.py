@@ -6,15 +6,16 @@ from sqlalchemy.exc import InterfaceError
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    form = LoginForm(request.form)
-    if request.method == 'POST' and form.validate():
-        try:
-            current_user = User.query.filter(User.name == form.username.data).first()
-            if current_user is None:
-                redirect('login')
-            if current_user.password == form.password.data:
-                session['name'] = current_user.name
-                return render_template('index.html', name=current_user.name)
-        except InterfaceError:
-            redirect('login')
-    return render_template('index.html', form=form, name='Guest')
+    # form = LoginForm(request.form)
+    # if request.method == 'POST' and form.validate():
+    #     try:
+    #         current_user = User.query.filter(User.name == form.username.data).first()
+    #         if current_user is None:
+    #             redirect('login')
+    #         if current_user.password == form.password.data:
+    #             session['name'] = current_user.name
+    #             return render_template('index.html', name=current_user.name)
+    #     except InterfaceError:
+    #         redirect('login')
+    # return render_template('index.html', form=form, name='Guest')
+    return render_template('index.html', name='Guest')

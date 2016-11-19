@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Enum
-from wtforms import Form, StringField, PasswordField, validators
+from wtforms import Form, StringField, PasswordField, validators, FieldList
 from database import Base
 
 
@@ -25,9 +25,15 @@ class User(Base):
 class RegistrationForm(Form):
     username = StringField('Username')
     password = PasswordField('New Password', [validators.DataRequired(),
-                                              validators.EqualTo('confirm', message='Passwords must match')])
+                                                validators.EqualTo('confirm', message='Passwords must match')])
     confirm = PasswordField('Repeat Password')
 
+
+class SwadeshForm(Form):       
+    def render_list(self,words):
+        all_tokens = FieldList(StringField())
+        for word in words:
+            all_tokens.append_entry()
 
 class LoginForm(Form):
     username = StringField('Username', [validators.DataRequired(), ])

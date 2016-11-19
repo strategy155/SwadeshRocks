@@ -3,6 +3,7 @@ from flask import abort, render_template, request, url_for
 from flask_sqlalchemy import Pagination
 from re import sub
 from os.path import join, dirname, normpath
+from models import SwadeshForm
 PER_PAGE = 10
 FORM_ELEMS = 100
 
@@ -17,9 +18,10 @@ def form(page_num):
     # words = "haha"
     # return render_template('form.html', pagination=pagination, words=words)
     words = get_words_for_page(page_num,PER_PAGE,FORM_ELEMS)
+    form_inp = SwadeshForm(request.form)
     if words is None and page_num != 1:
         abort(404)
-    return render_template('form.html', words=words)
+    return render_template('form.html', words=words, form =form_inp)
 
 
 def get_words_for_page(page_num, per_page, count):

@@ -1,15 +1,16 @@
 {% macro render_field(field) %}
   <dt>{{ field.label }}
   <dd>{{ field(**kwargs)|safe }}
-  {% if field.errors %}
+  {#{% if field.errors %}
     <ul class=errors>
     {% for error in field.errors %}
       <li>{{ error }}</li>
     {% endfor %}
     </ul>
   {% endif %}
-  </dd>
+#}  </dd>
 {% endmacro %}
+{#
 {% macro render_pagination(pagination) %}
   <div class=pagination>
   {%- for page in pagination.iter_pages() %}
@@ -28,4 +29,4 @@
       }}">Next &raquo;</a>
   {% endif %}
   </div>
-{% endmacro %}
+{% endmacro %}#}

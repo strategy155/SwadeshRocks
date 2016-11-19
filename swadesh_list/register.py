@@ -17,4 +17,4 @@ def register():
             return redirect(url_for('login'))
         except IntegrityError:
             flash('Username is not unique')
-    return render_template('register.html',form=form)
+    return render_template('register.html', form=form)
