@@ -12,4 +12,4 @@ import swadesh_list.json_download_page
 import swadesh_list.login
 import swadesh_list.search
 import swadesh_list.stats
-app.jinja_env.globals['url_for_other_page'] = swadesh_list.form.url_for_other_page
+# app.jinja_env.globals['url_for_other_page'] = swadesh_list.form.url_for_other_page

@@ -19,7 +19,7 @@ class User(Base):
 
     def commit_swad(self, enum):
         self.swadesh = enum
-    
+
 
 
 class RegistrationForm(Form):

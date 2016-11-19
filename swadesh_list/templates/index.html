@@ -4,7 +4,7 @@
         <title>Создание словаря</title>
     {% endblock %}
     {% block right_column %}
-        {% if name == 'Guest' %}
+       {# {% if name == 'Guest' %}
             {% from "_helpers.html" import render_field %}
             <form method=post >
               <dl>
@@ -14,7 +14,7 @@
               <p><input type=submit value=Login>
             </form>
         {% endif %}
-    {% endblock %}
+#}    {% endblock %}
     {% block content %}
         <h1>Welcome, {{ name }}</h1>
     {% endblock %}
