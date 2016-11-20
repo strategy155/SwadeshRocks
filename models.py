@@ -29,12 +29,13 @@ class RegistrationForm(Form):
     confirm = PasswordField('Repeat Password')
 
 
-class SwadeshForm(Form):       
+class SwadeshForm(Form):
+    all_tokens = []
     def render_list(self,words):
-        all_tokens = FieldList(StringField())
         for word in words:
-            all_tokens.append_entry()
-
+            self.all_tokens.append(StringField(word))
+        print(self.all_tokens)
+        return self.all_tokens
 class LoginForm(Form):
     username = StringField('Username', [validators.DataRequired(), ])
     password = PasswordField('Password', [validators.DataRequired()])
