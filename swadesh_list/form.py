@@ -3,14 +3,15 @@ from flask import abort, render_template, request, url_for
 from flask_sqlalchemy import Pagination
 from re import sub
 from os.path import join, dirname, normpath
-from models import SwadeshForm
 PER_PAGE = 10
 FORM_ELEMS = 100
 
 
-@app.route('/form', defaults={'page_num' : 1})
-@app.route('/form/page/<int:page_num>')
+@app.route('/form/<int:page_num>')
 def form(page_num):
+    if request.args:
+        print(request.args)
+    print(page_num)
     # words = get_words_for_page(page_num, PER_PAGE, FORM_ELEMS)
     # if not words and page_num !=1:
     #     abort(404)
@@ -18,10 +19,11 @@ def form(page_num):
     # words = "haha"
     # return render_template('form.html', pagination=pagination, words=words)
     words = get_words_for_page(page_num,PER_PAGE,FORM_ELEMS)
-    form_inp = SwadeshForm(request.form)
-    if words is None and page_num != 1:
+    # form_inp = SwadeshForm(request.form)
+    print(words)
+    if words == [] and page_num != 1:
         abort(404)
-    return render_template('form.html', words=words, form =form_inp)
+    return render_template('form.html', words=words)
 
 
 def get_words_for_page(page_num, per_page, count):
