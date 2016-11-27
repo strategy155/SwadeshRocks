@@ -1,5 +1,5 @@
 from swadesh_list import app
-from flask import abort, render_template, request, url_for
+from flask import abort, render_template, request, url_for, redirect
 from flask_sqlalchemy import Pagination
 from re import sub
 from os.path import join, dirname, normpath
@@ -8,9 +8,15 @@ FORM_ELEMS = 100
 
 
 @app.route('/form/<int:page_num>')
-def form(page_num):
+def form(page_num, dict_lul=None):
+    if dict_lul is None:
+        dict_lul = {}
+    words = get_words_for_page(page_num, PER_PAGE, FORM_ELEMS)
     if request.args:
         print(request.args)
+        for word in words:
+            dict_lul[word]=request.args[word]
+        return redirect(url_for('form', page_num=(page_num+1)))
     print(page_num)
     # words = get_words_for_page(page_num, PER_PAGE, FORM_ELEMS)
     # if not words and page_num !=1:
@@ -18,11 +24,10 @@ def form(page_num):
     # pagination = Pagination(page=page_num, per_page=PER_PAGE,total=FORM_ELEMS,)
     # words = "haha"
     # return render_template('form.html', pagination=pagination, words=words)
-    words = get_words_for_page(page_num,PER_PAGE,FORM_ELEMS)
     # form_inp = SwadeshForm(request.form)
     print(words)
     if words == [] and page_num != 1:
-        abort(404)
+        return redirect(url_for('stats', result_dict=dict_lul))
     return render_template('form.html', words=words)
 
 
